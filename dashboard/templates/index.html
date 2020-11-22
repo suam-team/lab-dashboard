@@ -1,0 +1,72 @@
+{% extends "layouts/base.html" %}
+
+{% block title %} UI Tables {% endblock %} 
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+        {% if msg %}
+        <div class="alert">
+          <span>{{ msg }}</span>
+        </div>
+        {% endif %}
+
+        <div class="row">
+            <div class="col-md-12">
+              <div class="card">
+                <div class="card-header card-header-primary">
+                  <h4 class="card-title">Hacking Lab</h4>
+                </div>
+                <div class="card-body">
+                  <div class="table-responsive">
+                    <table class="table">
+                      <thead class=" text-primary">
+                        <th>
+                          ID
+                        </th>
+                        <th>
+                          Name
+                        </th>
+                        <th>
+                          Category
+                        </th>
+                        <th>
+                          URL
+                        </th>
+                        <th>
+                          Solve 
+                        </th>
+                      </thead>
+                      <tbody>
+                        {% for lab in labs %}
+                        <tr>
+                          <td>
+                            {{ loop.index }}
+                          </td>
+                          <td>
+                            <a href="/lab/{{ lab.repo_name }}">{{ lab.name }}</a>
+                          </td>
+                          <td>
+                            Crypto
+                          </td>
+                          <td>
+                            <a href="{{ lab.url }}">{{ lab.url }}</a>
+                          </td>
+                          <td>
+                            {{ lab.solvers | length }}
+                          </td>
+                        </tr>
+                        {% endfor %}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+        </div>
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}{% endblock javascripts %}

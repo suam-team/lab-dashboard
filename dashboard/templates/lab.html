@@ -1,0 +1,135 @@
+{% extends "layouts/base.html" %}
+
+{% block title %} UI Tables {% endblock %} 
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+        {% if msg %}
+        <div class="alert">
+          <span>{{ msg }}</span>
+        </div>
+        {% endif %}
+
+        <div class="row">
+          <div class="col-md-6">
+            <div class="card">
+              <div class="card-header card-header-primary">
+                <h4 class="card-title">Lab Description</h4>
+              </div>
+              <div class="card-body">
+                <div class="row">
+                  <div class="col-md-4 col-lg-3">
+                    <h5>Name</h5>
+                  </div>
+                  <div class="col-md-8 col-lg-9">
+                    {{ lab.name }}
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-4 col-lg-3">
+                    <h5>Category</h5>
+                  </div>
+                  <div class="col-md-8 col-lg-9">
+                    {{ lab.category }}
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-4 col-lg-3">
+                    <h5>Detail</h5>
+                  </div>
+                  <div class="col-md-8 col-lg-9">
+                    {{ lab.detail }}
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-4 col-lg-3">
+                    <h5>URL</h5>
+                  </div>
+                  <div class="col-md-8 col-lg-9">
+                    <a href="{{ lab.url }}">{{ lab.url }}</a>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-4 col-lg-3">
+                    <h5>Solve</h5>
+                  </div>
+                  <div class="col-md-8 col-lg-9">
+                    {{ lab.solvers | length }}
+                  </div>
+                </div>
+                <form method="POST" action="/lab/solve">
+                  <div class="row">
+                    <div class="col-md-4 col-lg-3  my-auto">
+                      <h5 class="mb-0">Flag</h5>
+                    </div>
+                    <div class="col-md-3 col-lg-5 col-xl-6">
+                      <div class="form-group bmd-form-group">
+                        <input type="text" class="form-control" name="flag" {% if not is_auth %} disabled="true" value="Please Sign In" {% elif is_solve %} disabled="true" value="You have aleady solved" {% endif %}>
+                        <input type="hidden" name="repo_name" value="{{ lab.repo_name }}">
+                      </div>
+                    </div>
+                    <div class="col-md-4 col-lg-4 col-xl-3">
+                      <button type="submit" class="btn btn-primary" {% if is_solve or not is_auth %}disabled="true"{% endif %}>Submit</button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="card">
+              <div class="card-header card-header-primary">
+                <h4 class="card-title">Solver</h4>
+              </div>
+              <div class="card-body">
+                <div class="table-responsive">
+                  {% if lab.solvers | length == 0 %}
+                  No one solves this lab.
+                  {% else %}
+                  <table class="table">
+                    <thead class=" text-primary">
+                      <th>
+                        Rank
+                      </th>
+                      <th>
+                        Name
+                      </th>
+                      <th>
+                        Comment
+                      </th>
+                      <th>
+                        Submit Time
+                      </th>
+                    </thead>
+                    <tbody>
+                      {% for solver in lab.solvers %}
+                      <tr>
+                        <td>
+                          {{ loop.index }}
+                        </td>
+                        <td>
+                          {{ solver.user.nickname }}
+                        </td>
+                        <td>
+                          {{ solver.user.comment }}
+                        </td>
+                        <td>
+                          {{ solver.create_at }}
+                        </td>
+                      </tr>
+                      {% endfor %}
+                    </tbody>
+                  </table>
+                  {% endif %}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}{% endblock javascripts %}

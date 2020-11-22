@@ -1,0 +1,7 @@
+{
+    "name": "Suam Lab Dashboard",
+    "description": "The hacking lab dashboard that lists labs from the Github user",
+    "repository": "https://github.com/suam-team/lab-dashboard",
+    "logo": "https://suam.wtf/favicon-32x32.png",
+    "keywords": ["dashboard", "lab", "hacking"]
+}

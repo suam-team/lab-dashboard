@@ -1,0 +1,65 @@
+{% extends "layouts/base.html" %}
+
+{% block title %} UI Tables {% endblock %} 
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+        {% if msg %}
+        <div class="alert">
+          <span>{{ msg }}</span>
+        </div>
+        {% endif %}
+
+        <div class="row">
+          <div class="col-md-8 col-lg-7 col-xl-5">
+            <div class="card">
+              <div class="card-header card-header-primary">
+                <h4 class="card-title">User Profile</h4>
+              </div>
+              <div class="card-body">
+                <form method="POST" action="/profile">
+                  <div class="row">
+                    <div class="col-md-4 col-lg-3">
+                      <h5>Github ID</h5>
+                    </div>
+                    <div class="col-md-8 col-lg-9">
+                      {{ current_user.github_login }}
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-4 col-lg-3 my-auto">
+                      <h5 class="mb-0">Nickname</h5>
+                    </div>
+                    <div class="col-md-8 col-lg-9">
+                      <div class="form-group bmd-form-group">
+                        <input type="text" class="form-control" name="nickname" value="{{ current_user.nickname }}">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-4 col-lg-3 my-auto">
+                      <h5 class="mb-0">Comment</h5>
+                    </div>
+                    <div class="col-md-8 col-lg-9">
+                      <div class="form-group bmd-form-group">
+                        <input type="text" class="form-control" name="comment" value="{{ current_user.comment }}">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-12">
+                      <button type="submit" class="btn btn-primary pull-right">Update Profile</button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}{% endblock javascripts %}
