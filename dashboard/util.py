@@ -31,7 +31,7 @@ def decrypt_flag(enc_flag, key):
     cipher.update(aad)
 
     try:
-        return cipher.decrypt_and_verify(ciphertext, tag)
+        return cipher.decrypt_and_verify(ciphertext, tag).decode()
     except ValueError:
         return None
 
@@ -41,6 +41,6 @@ if __name__ == '__main__':
     enc_flag = encrypt_flag(flag, key)
     print(f"Enc Flag: {enc_flag}")
     hflag = decrypt_flag(enc_flag, key)
-    print(f"Hashed Flag: {hflag.decode()}")
+    print(f"Hashed Flag: {hflag}")
 
-    assert bcrypt.checkpw(flag.encode(), hflag), "Fail"
+    assert bcrypt.checkpw(flag.encode(), hflag.encode()), "Fail"
