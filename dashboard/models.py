@@ -7,7 +7,7 @@ db = SQLAlchemy(app)
 
 class User(db.Model, SerializerMixin):
     __tablename__ = 'user'
-    id = db.Column(db.Integer, primary_key=True)
+    id = db.Column(db.Integer, primary_key=True, autoincrement=False)
     github_login = db.Column(db.String(100))
     nickname = db.Column(db.String(100))
     comment = db.Column(db.String(100))
