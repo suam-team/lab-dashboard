@@ -10,7 +10,7 @@ class User(db.Model, SerializerMixin):
     id = db.Column(db.Integer, primary_key=True, autoincrement=False)
     github_login = db.Column(db.String(100))
     nickname = db.Column(db.String(100))
-    comment = db.Column(db.String(100))
+    comment = db.Column(db.String(256))
 
     solves = db.relationship("Solve")
 
@@ -25,11 +25,11 @@ class User(db.Model, SerializerMixin):
 
 class Lab(db.Model, SerializerMixin):
     __tablename__ = 'lab'
-    repo_name = db.Column(db.String(100), primary_key=True)
-    name = db.Column(db.String(100))
-    category = db.Column(db.String(100))
-    url = db.Column(db.String(100))
-    flag = db.Column(db.String(100))
+    repo_name = db.Column(db.String(256), primary_key=True)
+    name = db.Column(db.String(256))
+    category = db.Column(db.String(256))
+    url = db.Column(db.String(256))
+    flag = db.Column(db.String(256))
     detail = db.Column(db.Text)
     create_at = db.Column(db.DateTime, default=datetime.datetime.now())
 
