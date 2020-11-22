@@ -160,7 +160,7 @@ def solve():
     if not lab:
         return redirect('/')
     
-    if bcrypt.checkpw(flag.encode(), lab.flag):
+    if bcrypt.checkpw(flag.encode(), str(lab.flag, "utf-8").encode()):
         solve = Solve(current_user["id"], lab.repo_name)
         db.session.add(solve)
         db.session.commit()
