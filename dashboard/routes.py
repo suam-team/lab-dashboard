@@ -12,7 +12,7 @@ from . util import decrypt_flag, encrypt_flag
 from dashboard import app
 
 github_bp = make_github_blueprint()
-app.register_blueprint(github_bp, url_prefix="/login", redirect_url=app.config.get('GITHUB_REDIRECT_URI'))
+app.register_blueprint(github_bp, url_prefix="/login", redirect_url=app.config.get('GITHUB_REDIRECT_URL'))
 
 github_sdk = Github()
 
