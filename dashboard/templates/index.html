@@ -35,6 +35,9 @@
                           URL
                         </th>
                         <th>
+                          Author
+                        </th>
+                        <th>
                           Solve 
                         </th>
                       </thead>
@@ -48,10 +51,13 @@
                             <a href="/lab/{{ lab.repo_name }}">{{ lab.name }}</a>
                           </td>
                           <td>
-                            Crypto
+                            {{ lab.category }}
                           </td>
                           <td>
                             <a href="{{ lab.url }}">{{ lab.url }}</a>
+                          </td>
+                          <td>
+                            {{ lab.author }}
                           </td>
                           <td>
                             {{ lab.solvers | length }}

@@ -89,7 +89,7 @@ def sync():
         
         lab = json.loads(base64.b64decode(lab_file.content))
 
-        if "name" not in lab or "category" not in lab or "flag" not in lab or "detail" not in lab:
+        if "name" not in lab or "category" not in lab or "flag" not in lab or "detail" not in lab or "author" not in lab:
             continue
 
         existing_labs.append(repo_name)
@@ -100,10 +100,11 @@ def sync():
             existing_lab.name = lab["name"]
             existing_lab.url = url
             existing_lab.category = lab["category"]
+            existing_lab.author = lab["author"]
             existing_lab.flag = decrypt_flag(lab["flag"], app.secret_key)
             existing_lab.detail = lab["detail"]
         else:
-            lab = Lab(repo_name, lab["name"], lab["category"], url, decrypt_flag(lab["flag"], app.secret_key), lab["detail"])
+            lab = Lab(repo_name, lab["name"], lab["category"], lab["author"], url, decrypt_flag(lab["flag"], app.secret_key), lab["detail"])
             db.session.add(lab)
     
     deleted_labs = Lab.query.filter(Lab.repo_name.notin_(existing_labs)).all()

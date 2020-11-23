@@ -28,6 +28,7 @@ class Lab(db.Model, SerializerMixin):
     repo_name = db.Column(db.String(256), primary_key=True)
     name = db.Column(db.String(256))
     category = db.Column(db.String(256))
+    author = db.Column(db.String(256))
     url = db.Column(db.String(256))
     flag = db.Column(db.String(256))
     detail = db.Column(db.Text)
@@ -35,16 +36,17 @@ class Lab(db.Model, SerializerMixin):
 
     solvers = db.relationship("Solve")
 
-    def __init__(self, repo_name, name, category, url, flag, detail):
+    def __init__(self, repo_name, name, category, author, url, flag, detail):
         self.repo_name = repo_name
         self.name = name
+        self.author = author
         self.category = category
         self.url = url
         self.flag = flag
         self.detail = detail
 
     def __repr__(self):
-        return f"<Lab {self.id} name={self.name} category={self.category}>"
+        return f"<Lab {self.id} name={self.name} category={self.category} author={self.author}>"
 
 class Solve(db.Model):
     __tablename__ = 'solve'
