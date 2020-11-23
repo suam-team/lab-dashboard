@@ -1,4 +1,4 @@
-from flask import Flask, request, render_template, redirect, session
+from flask import Flask, request, render_template, redirect, session, url_for
 from flask_dance.contrib.github import make_github_blueprint, github
 from github import Github, GithubException
 
@@ -59,6 +59,7 @@ def authen(func):
 @app.route('/')
 @fetch_user
 def index():
+    print(url_for('index', _external=True))
     current_user = session.get("user")
     msg = request.args.get("msg")
     labs = Lab.query.all()
