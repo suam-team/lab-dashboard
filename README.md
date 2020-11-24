@@ -1,6 +1,6 @@
 # Lab Dashboard
 
-The hacking lab dashboard that lists labs from the Github user. For our lab dashboard, please navigate to [https://suam-lab-dashboard.herokuapp.com/](https://suam-lab-dashboard.herokuapp.com/).
+The hacking lab dashboard that lists labs from the Github user. For our lab dashboard, please navigate to [https://lab.suam.wtf/](https://lab.suam.wtf/).
 
 ## Avaliable Features
 
