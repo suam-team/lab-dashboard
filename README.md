@@ -21,12 +21,14 @@ $ pip install -r requirements.txt
 $ cp .env.example .env
 # Edit environment variables
 $ vi .env 
-# SQLALCHEMY_DATABASE_URI: Database connection string
+# DATABASE_URL: Database connection string
 # GITHUB_OAUTH_CLIENT_ID: Github app OAuth client ID
 # GITHUB_OAUTH_CLIENT_SECRET: Github app OAuth secret
 # DASHBOARD_ADMIN: Github ID for dashboard admin (for encrypting flag and syncing lab)
 # GITHUB_LAB_USER: Target Github user to sync labs
 # SECRET_KEY: Dashboard secret key
+# GOOGLE_GLOBAL_SITE_TAG: Global Site TAG for google analytic
+# PREFERRED_URL_SCHEME: Set URL Schema for app behide reverse proxy
 $ heroku local
 ```
 
@@ -43,24 +45,6 @@ or
 
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
 
-## Create Lab
+## Contibuting
 
-- Open the dashboard (e.g., http://someurl.com:1234/)
-- Login with Github account
-- Encrypt a flag by using the URL /enc_flag?flag=[YOUR_FLAG] (e.g., http://someurl.com:1234/enc_flag?flag=flag{testja})
-- In your lab project, create a lab.json file
-
-File: lab.json
-
-```json
-{
-    "name": "CTR Static Nonce Lab",
-    "category": "Crypto",
-    "flag": "[ENCRYPTED FLAG FROM PREVIOUS STEP]",
-    "detail": "The hacking lab for static nonce in CTR mode"
-}
-```
-
-- Sync labs by open http://someurl.com:1234/sync
-
-The labs from your Github user will appear in the dashboard.
+Please navigate to [CONTRIBUTING.md](/CONTRIBUTING.md).

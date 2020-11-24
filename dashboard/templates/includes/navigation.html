@@ -5,57 +5,42 @@
             <a class="navbar-brand" href="/">Suam Lab Dashboard</a>
           </div>
 
-          <div class="collapse navbar-collapse justify-content-end">
-            <ul class="navbar-nav">
+          <div class="justify-content-end" id="navbarMenu">
+            <ul class="navbar-nav" style="flex-direction: row;">
               <li class="nav-item">
                 <a class="nav-link" href="/">
-                  <i class="material-icons">dashboard</i>
-                  <p class="d-lg-none d-md-block">
-                    Dashboard
-                  </p>
+                  <i class="material-icons">dashboard</i> Dashboard
                 </a>
               </li>
               
               {% if current_user %}
               <li class="nav-item">
                 <a class="nav-link" href="/profile">
-                  <i class="material-icons">person</i>
-                  <p class="d-lg-none d-md-block">
-                    Account
-                  </p>
+                  <i class="material-icons">person</i> Profile
                 </a>
               </li>
                 {% if current_user["is_admin"] %}
                 <li class="nav-item">
                   <a class="nav-link" href="/sync">
-                    <i class="material-icons">sync</i>
-                    <p class="d-lg-none d-md-block">
-                      Sync
-                    </p>
+                    <i class="material-icons">sync</i> Sync
                   </a>
                 </li>
                 {% endif %}
               <li class="nav-item">
                 <a class="nav-link" href="/logout">
-                  <i class="material-icons">logout</i>
-                  <p class="d-lg-none d-md-block">
-                    Log out
-                  </p>
+                  <i class="material-icons">logout</i> Log out
                 </a>
               </li>
               {% else %}
-              <li class="nav-item"></li>
-                <a id="github-button" href="{{ url_for('github.login') }}" class="btn btn-block btn-social btn-github">
-                  <i class="fa fa-github"></i> Sign in with Github
+              <li class="nav-item">
+                <a class="nav-link" href="{{ url_for('github.login') }}">
+                  <i class="fa fa-github"></i> Sign In with Github
                 </a>
               </li>
               {% endif %}
               <li class="nav-item">
-                <a class="nav-link" href="https://github.com/suam-team/lab-dashboard">
-                  <i class="fa fa-github"></i> 
-                  <p class="d-lg-none d-md-block">
-                    Github
-                  </p>
+                <a class="nav-link" href="https://github.com/suam-team/lab-dashboard/blob/main/CONTRIBUTING.md">
+                  <i class="fa fa-handshake-o"></i> Contributing
                 </a>
               </li>
             </ul>
