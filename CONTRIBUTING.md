@@ -46,5 +46,11 @@ You can submit your lab to us by sending it to [lab@suam.wtf](mailto:lab@suam.wt
 
 ### Hacking Lab Example
 
+#### Web Application
+
 * [https://github.com/suam-team/ctr-broken-couter-lab](https://github.com/suam-team/ctr-broken-couter-lab)
 * [https://github.com/suam-team/ctr-static-nonce-lab](https://github.com/suam-team/ctr-static-nonce-lab)
+
+#### WebSocket Application
+
+* [https://github.com/suam-team/stack-buf-overflow-101-lab](https://github.com/suam-team/stack-buf-overflow-101-lab)
