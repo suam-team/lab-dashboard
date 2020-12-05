@@ -1,0 +1,46 @@
+{% extends "layouts/base.html" %}
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+        {% if msg %}
+        <div class="alert">
+          <p>Encrypted Flag:</p> 
+          <input type="text" class="form-control" value="{{ msg }}" readonly>
+        </div>
+        {% endif %}
+
+        <div class="row">
+          <div class="col-md-8 col-lg-7 col-xl-5">
+            <div class="card">
+              <div class="card-header card-header-primary">
+                <h4 class="card-title">Flag Encryption</h4>
+              </div>
+              <div class="card-body">
+                <form method="POST" action="/flag_enc">
+                  <div class="row">
+                    <div class="col-md-4 col-lg-3 my-auto">
+                      <h5 class="mb-0">Flag</h5>
+                    </div>
+                    <div class="col-md-8 col-lg-9">
+                      <div class="form-group bmd-form-group">
+                        <input type="text" class="form-control" name="flag">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-12">
+                      <button type="submit" class="btn btn-primary pull-right">Encrypt</button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}{% endblock javascripts %}

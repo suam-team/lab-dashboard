@@ -117,18 +117,22 @@ def sync():
 
     return redirect("/?msg=Sync+Complete")
 
-@app.route('/enc_flag')
+@app.route('/flag_enc', methods=["GET", "POST"])
 @authen
 @fetch_user
-def enc_flag():
+def flag_enc():
     current_user = session.get("user")
     if not current_user["is_admin"]:
         return redirect("/")
 
-    if not request.args.get("flag"):
-        return redirect("/")
+    msg = ""
+    if request.method == 'POST':
+        if not request.form.get("flag"):
+            return redirect("/")
 
-    return encrypt_flag(request.args.get("flag"), app.secret_key)
+        msg = encrypt_flag(request.form.get("flag"), app.secret_key)
+    
+    return render_template('flag_enc.html', msg=msg)
 
 @app.route('/lab/<path:repo_name>')
 @fetch_user
