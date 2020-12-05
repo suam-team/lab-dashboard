@@ -46,7 +46,7 @@
                             {{ loop.index }}
                           </td>
                           <td>
-                            <a href="/lab/{{ lab.repo_name }}">{{ lab.name }}</a>
+                            <a href="/lab/{{ lab.repo_name }}">{% if lab.repo_name in solved_labs %}<i class="fa  fa-check-circle"></i> {% endif %}{{ lab.name }}</a>
                           </td>
                           <td>
                             {{ lab.category }}

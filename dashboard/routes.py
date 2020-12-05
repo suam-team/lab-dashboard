@@ -62,7 +62,13 @@ def index():
     current_user = session.get("user")
     msg = request.args.get("msg")
     labs = Lab.query.all()
-    resp = render_template('index.html', msg=msg, current_user=current_user, labs=labs)
+    solved_labs = []
+    if current_user:
+        solves = db.session.query(Solve.lab_repo_name).filter(Solve.user_id==current_user["id"]).all()
+        for solve in solves:
+            solved_labs.append(solve[0])
+        
+    resp = render_template('index.html', msg=msg, current_user=current_user, labs=labs, solved_labs=solved_labs)
     db.session.close()
     return resp
 
