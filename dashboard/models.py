@@ -1,7 +1,8 @@
 from dashboard import app
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy_serializer import SerializerMixin
-import datetime
+from datetime import datetime
+from dateutil import tz
 
 db = SQLAlchemy(app)
 
@@ -32,7 +33,7 @@ class Lab(db.Model, SerializerMixin):
     url = db.Column(db.String(256))
     flag = db.Column(db.String(256))
     detail = db.Column(db.Text)
-    create_at = db.Column(db.DateTime, default=datetime.datetime.now())
+    create_at = db.Column(db.DateTime, default=datetime.now())
 
     solvers = db.relationship("Solve")
 
@@ -50,9 +51,12 @@ class Lab(db.Model, SerializerMixin):
 
 class Solve(db.Model):
     __tablename__ = 'solve'
+
+    serialize_rules = ('solved_at')
+
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), primary_key=True)
     lab_repo_name = db.Column(db.String(100), db.ForeignKey('lab.repo_name'), primary_key=True)
-    create_at = db.Column(db.DateTime, default=datetime.datetime.now())
+    create_at = db.Column(db.DateTime, default=datetime.now())
 
     user = db.relationship("User")
     lab = db.relationship("Lab")
@@ -60,6 +64,15 @@ class Solve(db.Model):
     def __init__(self, user_id, lab_repo_name):
         self.user_id = user_id
         self.lab_repo_name = lab_repo_name
+
+    def solved_at(self):
+        utc = self.create_at
+        from_zone = tz.gettz('UTC')
+        to_zone = tz.gettz(app.config['TIMEZONE'])
+
+        utc = utc.replace(tzinfo=from_zone)
+
+        return utc.astimezone(to_zone)
 
     def __repr__(self):
         return f"<Solve user_id={self.user_id} lab_repo_name={self.lab_repo_name}>"

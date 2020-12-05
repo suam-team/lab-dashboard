@@ -9,6 +9,8 @@ app.config["GITHUB_OAUTH_CLIENT_SECRET"] = os.environ.get("GITHUB_OAUTH_CLIENT_S
 app.config["GITHUB_LAB_USER"] = os.environ.get("GITHUB_LAB_USER")
 app.config["GOOGLE_GLOBAL_SITE_TAG"] = os.environ.get("GOOGLE_GLOBAL_SITE_TAG")
 app.config['PREFERRED_URL_SCHEME'] = os.environ.get("PREFERRED_URL_SCHEME")
+app.config['TIMEZONE'] = os.environ.get("TIMEZONE") or 'Asia/Bangkok'
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 admins = os.environ.get("DASHBOARD_ADMIN") or ""
 app.config["DASHBOARD_ADMIN"] = []

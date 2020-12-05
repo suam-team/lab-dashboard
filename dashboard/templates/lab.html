@@ -24,7 +24,7 @@
                     <h5>Name</h5>
                   </div>
                   <div class="col-md-8 col-lg-9">
-                    {{ lab.name }}
+                    <p>{{ lab.name }}</p>
                   </div>
                 </div>
                 <div class="row">
@@ -32,7 +32,7 @@
                     <h5>Category</h5>
                   </div>
                   <div class="col-md-8 col-lg-9">
-                    {{ lab.category }}
+                    <p>{{ lab.category }}</p>
                   </div>
                 </div>
                 <div class="row">
@@ -40,7 +40,7 @@
                     <h5>Author</h5>
                   </div>
                   <div class="col-md-8 col-lg-9">
-                    {{ lab.author }}
+                    <p>{{ lab.author }}</p>
                   </div>
                 </div>
                 <div class="row">
@@ -48,7 +48,7 @@
                     <h5>Detail</h5>
                   </div>
                   <div class="col-md-8 col-lg-9">
-                    {{ lab.detail }}
+                    <p>{{ lab.detail }}</p>
                   </div>
                 </div>
                 <div class="row">
@@ -56,7 +56,7 @@
                     <h5>URL</h5>
                   </div>
                   <div class="col-md-8 col-lg-9">
-                    <a href="{{ lab.url }}">{{ lab.url }}</a>
+                    <p><a href="{{ lab.url }}">{{ lab.url }}</a></p>
                   </div>
                 </div>
                 <div class="row">
@@ -64,7 +64,7 @@
                     <h5>Solve</h5>
                   </div>
                   <div class="col-md-8 col-lg-9">
-                    {{ lab.solvers | length }}
+                    <p>{{ lab.solvers | length }}</p>
                   </div>
                 </div>
                 <form method="POST" action="/lab/solve">
@@ -124,7 +124,7 @@
                           {{ solver.user.comment }}
                         </td>
                         <td>
-                          {{ solver.create_at }}
+                          {{ solver.solved_at() }}
                         </td>
                       </tr>
                       {% endfor %}
