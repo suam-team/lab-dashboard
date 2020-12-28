@@ -138,7 +138,7 @@ def flag_enc():
 
         msg = encrypt_flag(request.form.get("flag"), app.secret_key)
     
-    return render_template('flag_enc.html', msg=msg)
+    return render_template('flag_enc.html', msg=msg, current_user=current_user)
 
 @app.route('/lab/<path:repo_name>')
 @fetch_user
